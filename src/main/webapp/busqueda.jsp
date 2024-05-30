@@ -24,6 +24,8 @@ int perfil = (Integer) sesion.getAttribute("perfil");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EduFussion</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -48,20 +50,22 @@ int perfil = (Integer) sesion.getAttribute("perfil");
 	%>
 
 	<main>
-	<div>
-	<form class="form_inicio" action="respuestaCat.jsp" method="post">
-			<div class="username">
-				<label>Escoja la categoria: </label>
-				<%=combo%>
-			</div>
-			<input class="boton_enviar" type="submit" value="Enviar">
-		</form>
-	</div>	
+		<div>
+			<form class="form_inicio" action="respuestaCat.jsp" method="post">
+				<div class="username">
+					<label for="cmbCategoria">Escoja la categoria: </label>
+					<%=combo%>
+				</div>
+				<input class="boton_enviar" type="submit" value="Enviar">
+			</form>
+		</div>
 		<div style="margin: 5%;">
 			<form class="form_inicio" action="respuestaTeclear.jsp" method="post">
 				<div class="username">
-					<label>Buscar por nombre: </label> <input id="buscar" type="text"
-						placeholder="Ingrese su búsqueda" name="buscar" required>
+					<label for="buscar">Buscar por nombre: </label> <input id="buscar"
+						type="text" placeholder="Ingrese su búsqueda" name="buscar"
+						aria-label="buscar" aria-required="true" required> <span
+						class="icono-input"><i class="bi bi-search"></i> </span>
 				</div>
 				<input class="boton_enviar" type="submit" value="Enviar">
 			</form>
@@ -70,9 +74,9 @@ int perfil = (Integer) sesion.getAttribute("perfil");
 	</main>
 	<footer class="footer">
 		<ul>
-			<a href="https://www.facebook.com/brenda.simbana.5/">Facebook</a>
-			<a href="https://www.instagram.com/brendasimbana/">Instagram</a>
-			<a href="https://github.com/brendasimbana1">GitHub</a>
+			<li><a href="https://www.facebook.com/brenda.simbana.5/">Facebook</a></li>
+			<li><a href="https://www.instagram.com/brendasimbana/">Instagram</a></li>
+			<li><a href="https://github.com/brendasimbana1">GitHub</a></li>
 		</ul>
 	</footer>
 </body>

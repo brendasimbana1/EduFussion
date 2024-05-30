@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,6 +21,14 @@ public class Curso {
 	String path;
 
 
+	public Curso(int id, String nombre, String descripcion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+	}
+
+
 	public Curso() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -31,7 +40,7 @@ public class Curso {
 		String sql="select cur.id_cr, cat.descripcion_cat, cur.nombre_cr, cur.descripcion_cr, cur.path_cr "
 				+ "from tb_cursos cur, tb_categoria cat "
 				+ "where cat.id_cat=cur.id_cat "
-				+ "order by id_cr;";
+				+ "order by id_cr asc;";
 		Conexion con=new Conexion();
 		String tabla="<table class='table'><th>Identificador</th><th>Categoria</th><th>Nombre</th><th>Acceso</th><th>Detalles</th>";
 		ResultSet rs=null;
@@ -134,22 +143,21 @@ public class Curso {
 		return resultado;
 	}
 
-	public String ingresarProducto(int id, int cat,String nombre, int cantidad, double precio)
+	public String ingresarCurso(int id, int cat, String nombre, String descripcion)
 	{
 		String result="";
 		Conexion con=new Conexion();
 		PreparedStatement pr=null;
-		String sql="INSERT INTO tb_producto (id_pr,id_cat,"
-				+ "nombre_pr,cantidad_pr,precio_pr,foto_pr) "
-				+ "VALUES(?,?,?,?,?,?)";
+		String sql="INSERT INTO tb_cursos (id_cr,id_cat,"
+				+ "nombre_cr,descripcion_cr,path_cr) "
+				+ "VALUES(?,?,?,?,?)";
 		try{
 			pr=con.getConexion().prepareStatement(sql);
 			pr.setInt(1,id);
 			pr.setInt(2,cat);
 			pr.setString(3, nombre);
-			pr.setInt(4, cantidad);
-			pr.setDouble(5, precio);
-			pr.setBinaryStream(6,null);
+			pr.setString(4, descripcion);
+			pr.setString(5, "#");
 			if(pr.executeUpdate()==1)
 			{
 				result="Inserción correcta";
@@ -178,11 +186,11 @@ public class Curso {
 		return result;
 	}
 
-	public void CosulEditarProductos(int cod) {
+	public void buscarEdicion(int cod) {
 		Conexion con=new Conexion();
 		ResultSet rs = null;
 
-		String sql = "SELECT id_pr,id_cat,nombre_pr,cantidad_pr,precio_pr FROM tb_producto WHERE id_pr='"
+		String sql = "SELECT id_cr,id_cat,nombre_cr,descripcion_cr FROM tb_cursos WHERE id_cr='"
 				+ cod + "'";
 
 		try {
@@ -194,20 +202,19 @@ public class Curso {
 				setId(rs.getInt(1));
 				setId_cat(rs.getInt(2));
 				setNombre(rs.getString(3));
-//				setCantidad(rs.getInt(4));
-//				setPrecio(rs.getDouble(5));
+				setDescripcion(rs.getString(4));
 			}
 		}catch (Exception e) {
 
 		}
 	}
 
-	public boolean ModificarProducto(Curso p) {
+	public boolean Modificar(Curso p) {
 		boolean agregado = false;
 		Conexion con = new Conexion();
-		String sql = "UPDATE tb_producto SET nombre_pr='"+p.getNombre()+"' "
-//				+ " , cantidad_pr = "+p.getCantidad()+" , precio_pr = "+p.getPrecio()
-				+" WHERE id_pr = "+p.getId()+";";
+		String sql = "UPDATE tb_cursos SET nombre_cr='"+p.getNombre()+"' "
+				+ " , descripcion_cr = '"+p.descripcion+"' "
+				+" WHERE id_cr = "+p.getId()+";";
 
 		try {
 			con.Ejecutar(sql);
@@ -222,10 +229,10 @@ public class Curso {
 		return agregado;
 	}
 
-	public boolean EliminarProducto (int cod) {
+	public boolean Eliminar(int cod) {
 		boolean eliminado = false;
 		Conexion con = new Conexion();
-		String sql = "DELETE FROM tb_producto WHERE id_pr = '"+cod+"';";
+		String sql = "DELETE FROM tb_cursos WHERE id_cr = '"+cod+"';";
 
 		try {
 			con.Ejecutar(sql);
@@ -236,21 +243,26 @@ public class Curso {
 		return eliminado;
 	}
 
-	public String consultarProductos()
+	public String selecionarCursos()
 	{
-		String sql="SELECT * FROM tb_producto GROUP BY id_pr order by id_pr asc;";
+		String sql="select cur.id_cr, cat.descripcion_cat, cur.nombre_cr, cur.descripcion_cr "
+				+ "from tb_cursos cur, tb_categoria cat "
+				+ "where cat.id_cat=cur.id_cat "
+				+" order by id_cr asc;";
 		Conexion con=new Conexion();
-		String tabla="<table class=table table-striped><th>Id Producto</th><th>Producto</th><th>Añadir al carrito</th><th>Precio Unitario</th>";
+		String tabla="<table class=table table-striped><th>Seleccionar</th><th>Identificador</th>"
+				+"<th>Categoria</th><th>Nombre</th><th>Descripción</th>";
 		ResultSet rs=null;
 		rs=con.Consulta(sql);
 		try {
 			while(rs.next())
 			{
 				tabla+="<tr>"
+						+"<td><label for=\"select\"><input type=\"radio\" type=\"select\" name=\"select\" value=\"" + rs.getInt(1) + "\"></label></td>"
 						+"<td>"+rs.getInt(1)+"</td>"
+						+"<td>"+rs.getString(2)+"</td>"
 						+ "<td>"+rs.getString(3)+"</td>"
-						+ "<td><input type=checkbox name=productos value="+rs.getInt(1)+"></td>"
-						+"<td>"+rs.getInt(5)+"</td>"
+						+"<td> <a href= " + rs.getString(4) + ">Link</a></td>"
 								+ "</tr>";
 			}
 		} catch (SQLException e) {
@@ -370,6 +382,35 @@ public class Curso {
 		List<String> productos = new ArrayList<>(set);
 		System.out.println(productos);
 		return productos;	
+	}
+	
+	public int id_curso() {
+
+		String sql="SELECT id_cr FROM tb_cursos order by id_cr asc;";
+		Conexion con=new Conexion();
+		ResultSet rs=null;
+		List<Integer> id=new ArrayList<>();
+		//List<Integer> resultado=new ArrayList<>();
+		int mayor = 0;	
+		rs=con.Consulta(sql);
+		try {
+			while(rs.next())
+			{
+				id.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.print(e.getMessage());
+		}
+		
+		if(id.isEmpty()){
+			System.out.println("La lista l está vacía");
+			 return 0;
+		}
+			
+		mayor=Collections.max(id)+1;
+		return mayor;
 	}
 
 	public int getId() {

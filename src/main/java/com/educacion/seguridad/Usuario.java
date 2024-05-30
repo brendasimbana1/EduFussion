@@ -117,7 +117,7 @@ public class Usuario {
 		return respuesta;
 	}
 	
-	public String registroCliente(int id, String nombre, String direccion, String user, String clave)
+	public String registroAlumno(int id, String nombre, String direccion, String clave)
 	{
 		String result="";
 		Conexion con=new Conexion();
@@ -130,7 +130,7 @@ public class Usuario {
 			pr.setInt(1,id);
 			pr.setString(2,nombre);
 			pr.setString(3, direccion);
-			pr.setString(4, user);
+			pr.setString(4, direccion);
 			pr.setString(5, clave);
 			pr.setInt(6, 2);   //Ingresa solo usuarios tipo 2: cliente
 			if(pr.executeUpdate()==1)

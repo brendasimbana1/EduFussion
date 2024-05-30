@@ -23,10 +23,10 @@ public class Pagina {
 
 	public String mostrarMenu(int nperfil)
 	{
-		String menu="<nav><ul>";
+		String menu="<section class=\"navega\"><nav><ul>";
 		String sql="SELECT * FROM tb_pagina pag, tb_perfil per, tb_perfilpagina pper "
 				+"WHERE pag.id_pag=pper.id_pag AND pper.id_per=per.id_per AND pper.id_per= "+nperfil
-				+" order by pag.id_pag;";
+				+" order by pper.id_pagper;";
 				Conexion con = new Conexion();
 		ResultSet rs=null;
 		
@@ -38,10 +38,10 @@ public class Pagina {
 			}
 			while(rs.next())
 			{
-				menu+="<a href="+rs.getString(3)+" accesskey="+rs.getInt(1)+">"+rs.getString(2)+
-				"</a>";
+				menu+="<li><a href="+rs.getString(3)+" accesskey="+rs.getInt(1)+">"+rs.getString(2)+
+				"</a></li>";
 			}
-			menu+="</ul></nav>";
+			menu+="</ul></nav></section>";
 		}
 		catch(SQLException e)
 		{

@@ -53,9 +53,9 @@ int perfil = (Integer) sesion.getAttribute("perfil");
 
 	<footer class="footer">
 		<ul>
-			<a href="https://www.facebook.com/brenda.simbana.5/">Facebook</a>
-			<a href="https://www.instagram.com/brendasimbana/">Instagram</a>
-			<a href="https://github.com/brendasimbana1">GitHub</a>
+			<li><a href="https://www.facebook.com/brenda.simbana.5/">Facebook</a></li>
+			<li><a href="https://www.instagram.com/brendasimbana/">Instagram</a></li>
+			<li><a href="https://github.com/brendasimbana1">GitHub</a></li>
 		</ul>
 	</footer>
 

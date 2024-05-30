@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1" session="true"
 	import="com.educacion.seguridad.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,13 +42,13 @@
 	out.print(menu);
 	}
 	%>
-	<h4>
+	<h2 style="color: #2B5E8B;">
 		Bienvenido/a,
 		<%
 	usuario = (String) sesion.getAttribute("usuario");
 	out.println(usuario);
 	%>
-	</h4>
+	</h2>
 	<main>
 		<section>
 			<div class="contenedor">
@@ -67,9 +67,9 @@
 
 	<footer class="footer">
 		<ul>
-			<a href="https://www.facebook.com/brenda.simbana.5/">Facebook</a>
-			<a href="https://www.instagram.com/brendasimbana/">Instagram</a>
-			<a href="https://github.com/brendasimbana1">GitHub</a>
+			<li><a href="https://www.facebook.com/brenda.simbana.5/">Facebook</a></li>
+			<li><a href="https://www.instagram.com/brendasimbana/">Instagram</a></li>
+			<li><a href="https://github.com/brendasimbana1">GitHub</a></li>
 		</ul>
 	</footer>
 </body>

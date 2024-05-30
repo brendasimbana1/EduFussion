@@ -35,7 +35,7 @@ public class Conexion
 		this.driver ="org.postgresql.Driver";
 		this.user="postgres";
 		this.pwd="1234";
-		this.cadena="jdbc:postgresql://localhost:5432/bd_educacion";
+		this.cadena="jdbc:postgresql://localhost:5432/bd_educacion?charset=utf8";
 		this.con=this.crearConexion();
 
 	}

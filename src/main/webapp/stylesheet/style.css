@@ -1,9 +1,9 @@
 @charset "ISO-8859-1";
+
 body {
 	font-family: "Karla", sans-serif;
-  	font-optical-sizing: auto;
-  	font-weight: 300;
-  	font-style: normal;
+	font-weight: 300;
+	font-style: normal;
 	position: relative;
 	padding: 0;
 	margin: 0;
@@ -15,9 +15,9 @@ body {
 
 .titulo {
 	font-family: "Major Mono Display", monospace;
-  	font-weight: 400;
- 	font-style: normal;
-	color: #f8f8f8;
+	font-weight: 400;
+	font-style: normal;
+	color: #FFFFFF;
 	position: absolute;
 	text-align: center;
 	background-color: #174976;
@@ -30,33 +30,36 @@ body {
 	font-size: 18px;
 }
 
-h3{
+h3 {
 	font-family: "Karla", sans-serif;
-  	font-optical-sizing: auto;
-  	font-weight: 500;
-  	font-style: normal;
+	font-weight: 500;
+	font-style: normal;
 }
 
-h2{
+h2 {
 	font-family: "Major Mono Display", monospace;
-  	font-weight: 600;
- 	font-style: oblique;
- 	font-size: 20px;
-  	text-align: center;
-}
-
-h4 {
-	font-family: "Major Mono Display", monospace;
-  	font-weight: 600;
- 	font-style: oblique;
- 	font-size: 20px;
-  	text-align: center;
-  	color: #2B5E8B;
+	font-weight: 600;
+	font-style: oblique;
+	font-size: 20px;
+	text-align: center;
 }
 
 .navega {
 	width: 100%;
 	height: 10%;
+}
+
+.navega a {
+	color: #2B5E8B;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+.navega a:hover {
+	background-color: #2B5E8B;
+	color: #f8f8f8;
+	text-decoration: none;
+	font-size: 19px;
 }
 
 ul {
@@ -65,6 +68,10 @@ ul {
 	padding: 10px;
 	overflow: hidden;
 	text-align: center;
+}
+
+li {
+	display: inline;
 }
 
 a {
@@ -85,12 +92,24 @@ main {
 	position: absolute;
 	font-size: 15px;
 	text-align: center;
-	color: #f8f8f8;
-	background-color: #BFBFC3;
+	background-color: #46739C;
 	bottom: 0;
 	width: 100%;
 	height: 50px;
 }
+
+.footer a {
+	color: #f8f8f8;
+	text-decoration: none;
+}
+
+.footer a:hover {
+	text-decoration: none;
+	background-color: #f8f8f8;
+	color: #2B5E8B;
+	font-size: 18px;
+}
+
 .sidebar {
 	background-color: white;
 	padding: 20px;
@@ -101,16 +120,16 @@ main {
 	display: flex;
 }
 
-.imagen_curso{
-	width: 500px; 
-	margin: 0; 
+.imagen_curso {
+	width: 500px;
+	margin: 0;
 	vertical-align: middle;
 }
 
-.cuadro img{
-	width: 30%; 
-	margin: 0; 
-	vertical-align: middle; 
+.cuadro img {
+	width: 30%;
+	margin: 0;
+	vertical-align: middle;
 }
 
 .contenedor {
@@ -135,7 +154,7 @@ main {
 	text-align: center;
 }
 
-.table th,tr{
+.table th, tr {
 	height: 50px;
 	border-bottom: 1px solid #032645;
 }
@@ -147,7 +166,7 @@ main {
 .form_inicio {
 	width: 500px;
 	background: #D5D5D5;
-	border-radius: 10px;
+	border-radius: 10%;
 	text-align: center;
 	padding: 0 40px;
 	box-sizing: border-box;
@@ -166,7 +185,7 @@ form .username {
 	margin: 30px 0;
 }
 
-.username input {
+.username input, textarea {
 	width: 90%;
 	padding: 0 5px;
 	height: 40px;
@@ -174,10 +193,11 @@ form .username {
 	border: none;
 	background: white;
 	outline: none;
+	font-family: "Karla", sans-serif;
 }
 
 .username select {
-  	width: 90%;
+	width: 90%;
 	padding: 0 5px;
 	height: 40px;
 	font-size: 16px;
@@ -202,7 +222,44 @@ form .username {
 	outline: none;
 }
 
-.factura{
-	border: 1px solid purple;
+.icono-input {
+	position: absolute;
+	display: block;
+	width: 20px;
+	height: 20px;
+	left: 12px;
+	top: 50%;
+	transform: translateX(1800%);
+	height: 20px;
+	left: 12px;
+	top: 50%;
+}
+
+.boton {
+	width: 190px;
+	background: #093760;
+	border-radius: 25px;
+	font-size: 18px;
+	color: white;
+	cursor: pointer;
 	text-align: center;
+}
+
+.foto {
+	margin: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
 }
